@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+die() { echo "$@" >&2; exit 1; }
+
+debug()
+{
+	if [ -n "$debug" ]; then
+		echo "$@" >&2
+	fi
+}
+
+say()
+{
+	if [ -z "$quiet" ]; then
+		echo "$@" >&2
+	fi
+}
+
+assert()
+{
+	if "$@"; then
+		:
+	else
+		die "assertion failed: " "$@"
+	fi
+}
